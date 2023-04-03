@@ -8,8 +8,8 @@ function Home() {
       <header className="flex justify-between align-center my-5">
         <h2>Products</h2>
         <button className="bg-green-500 text-white py-1 px-3">
-          <Link href="/add" className="text-sm">
-            Add New Product
+          <Link href="/create" className="text-sm">
+            Create New Product
           </Link>
         </button>
       </header>

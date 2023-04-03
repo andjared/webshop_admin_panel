@@ -1,21 +1,12 @@
-"use client";
-import { products } from "@/products";
-import Image from "next/image";
 import Link from "next/link";
 
-interface Props {
-  params: { id: string };
-}
-
-function Edit({ params: { id } }: Props) {
-  const product = products.find((product) => product.id === Number(id));
+function Create() {
   return (
     <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2">
       <label className="block">
         <span className="block text-md font-medium text-slate-700">Title </span>
         <input
           type="text"
-          placeholder={product?.title}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
@@ -24,7 +15,6 @@ function Edit({ params: { id } }: Props) {
         <span className="block text-md font-medium text-slate-700">Info </span>
         <input
           type="text"
-          placeholder={product?.info}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
@@ -35,7 +25,6 @@ function Edit({ params: { id } }: Props) {
         </span>
         <textarea
           rows={3}
-          placeholder={product?.description}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
@@ -47,17 +36,10 @@ function Edit({ params: { id } }: Props) {
           </a>
         </label>
         <input id="fileUpload" name="image" type="file" className="hidden" />
-        <Image
-          className="object-cover"
-          src={product?.img}
-          alt={product?.description}
-          width={360}
-          height={360}
-        />
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
         <button className="bg-green-400 outline-slate-400 outline-offset-3 text-slate-100 px-4 py-2 ">
-          Save Changes
+          Save
         </button>
         <button className="bg-red-400 outline-slate-400 outline-offset-3 text-slate-100 px-4 py-2 ">
           <Link href="/">Cancel</Link>
@@ -67,4 +49,4 @@ function Edit({ params: { id } }: Props) {
   );
 }
 
-export default Edit;
+export default Create;
