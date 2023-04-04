@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --primary: #5c5c5c;
-  --accent: #edd4e3;
+  --accent: #e7ab9a;
+  --positive: #617143;
+  --warning: #df7857;
 }
 
 * {

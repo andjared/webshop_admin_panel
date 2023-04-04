@@ -10,6 +10,11 @@ module.exports = {
       colors: {
         primary: " var(--primary)",
         accent: "var(--accent)",
+        positive: "var(--positive)",
+        warning: "var(--warning)",
+      },
+      fontFamily: {
+        title: ["Dancing Script, cursive"],
       },
     },
   },

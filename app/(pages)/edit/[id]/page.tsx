@@ -1,18 +1,22 @@
 "use client";
 import { products } from "@/products";
 import Image from "next/image";
+import { ImageProps } from "next/image";
+
 import Link from "next/link";
 
-interface Props {
+export interface Props {
   params: { id: string };
 }
 
 function Edit({ params: { id } }: Props) {
   const product = products.find((product) => product.id === Number(id));
   return (
-    <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2">
+    <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2 text-base">
       <label className="block">
-        <span className="block text-md font-medium text-slate-700">Title </span>
+        <span className="block text-md font-medium text-slate-700 py-1">
+          Title
+        </span>
         <input
           type="text"
           placeholder={product?.title}
@@ -21,7 +25,9 @@ function Edit({ params: { id } }: Props) {
         />
       </label>
       <label className="block">
-        <span className="block text-md font-medium text-slate-700">Info </span>
+        <span className="block text-md font-medium text-slate-700 py-1">
+          Info
+        </span>
         <input
           type="text"
           placeholder={product?.info}
@@ -30,7 +36,7 @@ function Edit({ params: { id } }: Props) {
         />
       </label>
       <label className="block">
-        <span className="block text-md font-medium text-slate-700">
+        <span className="block text-md font-medium text-slate-700 py-1">
           Description
         </span>
         <textarea
@@ -42,7 +48,7 @@ function Edit({ params: { id } }: Props) {
       </label>
       <div className="flex flex-col justify-between gap-3">
         <label htmlFor="fileUpload" className="pointer-events-none">
-          <a className="bg-slate-500 px-3 py-2 text-md text-white font-bold cursor-pointer pointer-events-auto">
+          <a className="bg-accent text-md text-white font-medium cursor-pointer pointer-events-auto py-2 px-3">
             Select image
           </a>
         </label>
@@ -56,10 +62,10 @@ function Edit({ params: { id } }: Props) {
         />
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
-        <button className="bg-green-400 outline-slate-400 outline-offset-3 text-slate-100 px-4 py-2 ">
+        <button className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
           Save Changes
         </button>
-        <button className="bg-red-400 outline-slate-400 outline-offset-3 text-slate-100 px-4 py-2 ">
+        <button className="bg-warning outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
           <Link href="/">Cancel</Link>
         </button>
       </div>
