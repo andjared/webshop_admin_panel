@@ -7,11 +7,12 @@ function Home() {
     <main className="flex flex-col justify-center align-center text-primary max-w-4xl mx-auto px-2">
       <header className="flex justify-between align-center my-5">
         <h2 className="font-title font-extrabold text-lg">Products</h2>
-        <button className="bg-positive font-medium py-2 px-4">
-          <Link href="/create" className="text-sm text-white font-medium">
+
+        <Link href="/create" className="text-sm text-white font-medium">
+          <button className="bg-positive font-medium py-2 px-6">
             Create New Product
-          </Link>
-        </button>
+          </button>
+        </Link>
       </header>
 
       <table className="table-auto py-8 text-sm">
@@ -38,14 +39,14 @@ function Home() {
                 {product.title}
               </td>
               <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                <button className="bg-positive text-white font-medium py-1 px-3">
-                  <Link href={`/edit/${product.id}`} className="text-sm">
+                <Link href={`/edit/${product.id}`} className="text-sm z-10">
+                  <button className="bg-positive text-white font-medium py-2 px-6 pointer-events-auto">
                     Edit
-                  </Link>
-                </button>
+                  </button>
+                </Link>
               </td>
               <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                <button className="bg-warning text-white font-medium py-1 px-3">
+                <button className="bg-warning text-white font-medium py-2 px-6">
                   Delete
                 </button>
               </td>

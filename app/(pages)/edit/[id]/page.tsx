@@ -46,7 +46,7 @@ function Edit({ params: { id } }: Props) {
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
       </label>
-      <div className="flex flex-col justify-between gap-3">
+      <div className="flex flex-col justify-between gap-4">
         <label htmlFor="fileUpload" className="pointer-events-none">
           <a className="bg-accent text-md text-white font-medium cursor-pointer pointer-events-auto py-2 px-3">
             Select image
@@ -65,9 +65,11 @@ function Edit({ params: { id } }: Props) {
         <button className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
           Save Changes
         </button>
-        <button className="bg-warning outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
-          <Link href="/">Cancel</Link>
-        </button>
+        <Link href="/">
+          <button className="bg-warning outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
+            Cancel
+          </button>
+        </Link>
       </div>
     </form>
   );
