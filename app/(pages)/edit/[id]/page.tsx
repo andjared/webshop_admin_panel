@@ -11,6 +11,8 @@ export interface Props {
 
 function Edit({ params: { id } }: Props) {
   const product = products.find((product) => product.id === Number(id));
+  const { title, info, description, img } = product!;
+
   return (
     <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2 text-base">
       <label className="block">
@@ -19,7 +21,7 @@ function Edit({ params: { id } }: Props) {
         </span>
         <input
           type="text"
-          placeholder={product?.title}
+          placeholder={title}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
@@ -30,7 +32,7 @@ function Edit({ params: { id } }: Props) {
         </span>
         <input
           type="text"
-          placeholder={product?.info}
+          placeholder={info}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
@@ -41,7 +43,7 @@ function Edit({ params: { id } }: Props) {
         </span>
         <textarea
           rows={3}
-          placeholder={product?.description}
+          placeholder={description}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
         />
@@ -53,13 +55,7 @@ function Edit({ params: { id } }: Props) {
           </a>
         </label>
         <input id="fileUpload" name="image" type="file" className="hidden" />
-        <Image
-          className="object-cover"
-          src={product?.img}
-          alt={product?.description}
-          width={360}
-          height={360}
-        />
+        <Image src={img} alt={title} width={360} height={360} />
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
         <button className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
