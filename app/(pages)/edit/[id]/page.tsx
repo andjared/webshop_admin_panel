@@ -55,7 +55,9 @@ function Edit({ params: { id } }: Props) {
           </a>
         </label>
         <input id="fileUpload" name="image" type="file" className="hidden" />
-        <Image src={img} alt={title} width={360} height={360} />
+        <div className="relative h-96 w-full object-cover">
+          <Image src={img} alt={title} fill />
+        </div>
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
         <button className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
