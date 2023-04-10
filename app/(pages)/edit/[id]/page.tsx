@@ -1,8 +1,6 @@
 "use client";
 import { products } from "@/products";
 import Image from "next/image";
-import { ImageProps } from "next/image";
-
 import Link from "next/link";
 
 export interface Props {
