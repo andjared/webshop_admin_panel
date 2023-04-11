@@ -6,7 +6,6 @@ export interface Props {
   products: IProduct[];
   handleDelete: (id: number) => void;
 }
-
 export default function Products({
   products,
   handleDelete,

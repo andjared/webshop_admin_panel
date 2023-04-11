@@ -3,6 +3,7 @@ import getAllProducts from "@/lib/getAllProducts";
 import { IProduct } from "@/types";
 import deleteProduct from "@/lib/deleteProducts";
 import ProductsTable from "../components/ProductsTable";
+import createProduct from "@/lib/createProduct";
 
 async function Home() {
   const data: Promise<IProduct[]> = getAllProducts();
@@ -11,6 +12,16 @@ async function Home() {
   const handleDelete = async (id: number) => {
     await deleteProduct(id);
   };
+
+  const someData = {
+    title: "title 111",
+    info: "info",
+    img: "IMAGE",
+    description: "decr",
+    price: "price",
+  };
+
+  // createProduct(someData) --ovde radi
 
   console.log(products);
 

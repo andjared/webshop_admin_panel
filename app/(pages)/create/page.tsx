@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { IProduct } from "@/types";
+import createProduct from "@/lib/createProduct";
 import Link from "next/link";
 
-function Create() {
+async function Create() {
   const [product, setProduct] = useState<IProduct>({
     title: "",
     info: "",
@@ -16,6 +17,19 @@ function Create() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
   ): void => {
     setProduct({ ...product, [e.target.name]: e.target.value });
+  };
+
+  const someData = {
+    title: "title",
+    info: "info",
+    img: "IMAGE",
+    description: "decr",
+    price: "price",
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    await createProduct(product);
   };
 
   return (
@@ -83,7 +97,10 @@ function Create() {
         />
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
-        <button className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2">
+        <button
+          className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2"
+          onClick={handleCreate}
+        >
           Save
         </button>
         <Link href="/">
