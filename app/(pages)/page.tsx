@@ -1,10 +1,18 @@
 import Link from "next/link";
 import getAllProducts from "@/lib/getAllProducts";
 import { IProduct } from "@/types";
+import deleteProduct from "@/lib/deleteProducts";
+import ProductsTable from "../components/ProductsTable";
 
 async function Home() {
   const data: Promise<IProduct[]> = getAllProducts();
   const products = await data;
+
+  const handleDelete = async (id: number) => {
+    await deleteProduct(id);
+  };
+
+  console.log(products);
 
   return (
     <main className="flex flex-col justify-center align-center text-primary max-w-4xl mx-auto px-2 mb-10">
@@ -16,46 +24,7 @@ async function Home() {
           </button>
         </Link>
       </header>
-      <table className="table-auto py-8 text-sm">
-        <thead>
-          <tr>
-            <th className="border-collapse border border-slate-300 rounded-md border-spacing-2 shadow-sm font-medium py-2">
-              Product Title
-            </th>
-            <th
-              className="border-collapse border border-slate-300 rounded-md border-spacing-2 shadow-sm font-medium py-2"
-              colSpan={2}
-            >
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {products &&
-            products.map((product: IProduct) => (
-              <tr
-                key={product.id}
-                className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2 align-middle"
-              >
-                <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm  py-1 px-3 font-medium">
-                  {product.title}
-                </td>
-                <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                  <Link href={`/edit/${product.id}`} className="text-sm z-10">
-                    <button className="bg-positive text-white font-medium py-2 px-6 pointer-events-auto">
-                      Edit
-                    </button>
-                  </Link>
-                </td>
-                <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                  <button className="bg-warning text-white font-medium py-2 px-6">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <ProductsTable products={products} handleDelete={handleDelete} />
     </main>
   );
 }
