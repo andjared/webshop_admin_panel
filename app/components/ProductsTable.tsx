@@ -4,12 +4,9 @@ import React from "react";
 
 export interface Props {
   products: IProduct[];
-  handleDelete: (id: number) => void;
+  // handleDelete: (id: number) => void;
 }
-export default function Products({
-  products,
-  handleDelete,
-}: Props): JSX.Element {
+export default function Products({ products }: Props): JSX.Element {
   return (
     <table className="table-auto py-8 text-sm">
       <thead>

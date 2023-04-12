@@ -4,7 +4,7 @@ import { IProduct } from "@/types";
 import createProduct from "@/lib/createProduct";
 import Link from "next/link";
 
-async function Create() {
+function Create() {
   const [product, setProduct] = useState<IProduct>({
     title: "",
     info: "",
@@ -19,15 +19,7 @@ async function Create() {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  const someData = {
-    title: "title",
-    info: "info",
-    img: "IMAGE",
-    description: "decr",
-    price: "price",
-  };
-
-  const handleCreate = async (e) => {
+  const handleCreate = async (e: any) => {
     e.preventDefault();
     await createProduct(product);
   };

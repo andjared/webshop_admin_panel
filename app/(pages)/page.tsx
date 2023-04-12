@@ -9,19 +9,9 @@ async function Home() {
   const data: Promise<IProduct[]> = getAllProducts();
   const products = await data;
 
-  const handleDelete = async (id: number) => {
-    await deleteProduct(id);
-  };
-
-  const someData = {
-    title: "title 111",
-    info: "info",
-    img: "IMAGE",
-    description: "decr",
-    price: "price",
-  };
-
-  // createProduct(someData) --ovde radi
+  // const handleDelete = async (id: number) => {
+  //   await deleteProduct(id);
+  // };
 
   console.log(products);
 
@@ -35,7 +25,7 @@ async function Home() {
           </button>
         </Link>
       </header>
-      <ProductsTable products={products} handleDelete={handleDelete} />
+      <ProductsTable products={products} />
     </main>
   );
 }
