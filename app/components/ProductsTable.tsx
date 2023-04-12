@@ -3,16 +3,20 @@ import Link from "next/link";
 import { IProduct } from "@/types";
 import React from "react";
 import deleteProduct from "@/lib/deleteProducts";
+import { useRouter } from "next/navigation";
 
 export interface Props {
   products: IProduct[];
 }
 
-const handleDelete = async (id: number) => {
-  await deleteProduct(id);
-};
-
 export default function Products({ products }: Props): JSX.Element {
+  const router = useRouter();
+
+  const handleDelete = async (id: number) => {
+    await deleteProduct(id);
+    router.push("/");
+  };
+
   return (
     <table className="table-auto py-8 text-sm">
       <thead>
