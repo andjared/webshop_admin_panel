@@ -1,5 +1,4 @@
-"use client";
-import { products } from "@/products";
+import getProductById from "@/lib/getProductById";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,9 +6,11 @@ export interface Props {
   params: { id: string };
 }
 
-function Edit({ params: { id } }: Props) {
-  const product = products.find((product) => product.id === Number(id));
-  const { title, info, description, img } = product!;
+async function Edit({ params: { id } }: Props) {
+  const data = getProductById(Number(id));
+  const product = await data;
+
+  const { title, info, description } = product!;
 
   return (
     <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2 text-base">
@@ -64,9 +65,9 @@ function Edit({ params: { id } }: Props) {
           </a>
         </label>
         <input id="fileUpload" name="image" type="file" className="hidden" />
-        <div className="relative h-96 w-full object-cover">
+        {/* <div className="relative h-96 w-full object-cover">
           <Image src={img} alt={title} fill />
-        </div>
+        </div> */}
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
         <button className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
