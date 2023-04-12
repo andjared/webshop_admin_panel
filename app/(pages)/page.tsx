@@ -1,9 +1,7 @@
 import Link from "next/link";
 import getAllProducts from "@/lib/getAllProducts";
 import { IProduct } from "@/types";
-import deleteProduct from "@/lib/deleteProducts";
 import ProductsTable from "../components/ProductsTable";
-import createProduct from "@/lib/createProduct";
 
 async function Home() {
   const data: Promise<IProduct[]> = getAllProducts();

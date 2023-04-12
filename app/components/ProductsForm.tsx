@@ -3,13 +3,16 @@ import { IProduct } from "@/types";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import editProduct from "@/lib/editProduct";
+import createProduct from "@/lib/createProduct";
+import { useRouter } from "next/navigation";
 
 export interface Props {
-  handleSubmit: (e: any, data: IProduct) => void;
   product?: IProduct;
 }
 
-export default function ProductsForm({ handleSubmit, product }: Props) {
+export default function ProductsForm({ product }: Props) {
+  const router = useRouter();
   const formData = {
     title: "",
     info: "",
@@ -20,7 +23,23 @@ export default function ProductsForm({ handleSubmit, product }: Props) {
 
   const [data, setData] = useState<IProduct>(product || formData);
 
-  const { id, title, info, description, img, price } = data;
+  const { title, info, description, img, price } = data;
+
+  const handleEdit = async (e: any, data: IProduct) => {
+    e.preventDefault();
+    await editProduct(data, data.id!);
+    router.push("/");
+  };
+
+  const handleCreate = async (e: any, data: IProduct) => {
+    e.preventDefault();
+    await createProduct(data);
+    router.push("/");
+  };
+
+  const handleSubmit = (e: any, data: IProduct) => {
+    product ? handleEdit(e, data) : handleCreate(e, data);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
@@ -101,6 +120,7 @@ export default function ProductsForm({ handleSubmit, product }: Props) {
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
         <button
+          type="submit"
           className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2"
           onClick={(e) => handleSubmit(e, data)}
         >
