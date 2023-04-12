@@ -1,3 +1,4 @@
+"use client";
 import { IProduct } from "@/types";
 import createProduct from "@/lib/createProduct";
 import ProductsForm from "@/app/components/ProductsForm";

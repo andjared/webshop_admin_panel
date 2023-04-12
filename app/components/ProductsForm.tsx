@@ -6,23 +6,26 @@ import Link from "next/link";
 
 export interface Props {
   handleSubmit: (e: any, data: IProduct) => void;
+  product?: IProduct;
 }
 
-export default function ProductsForm({ handleSubmit }: Props) {
-  const [product, setProduct] = useState<IProduct>({
+export default function ProductsForm({ handleSubmit, product }: Props) {
+  const formData = {
     title: "",
     info: "",
     description: "",
     img: "",
     price: "",
-  });
+  };
 
-  const { title, info, description, img, price } = product;
+  const [data, setData] = useState<IProduct>(product || formData);
+
+  const { id, title, info, description, img, price } = data;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
   ): void => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   return (
@@ -99,7 +102,7 @@ export default function ProductsForm({ handleSubmit }: Props) {
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
         <button
           className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2"
-          onClick={(e) => handleSubmit(e, product)}
+          onClick={(e) => handleSubmit(e, data)}
         >
           Save
         </button>
