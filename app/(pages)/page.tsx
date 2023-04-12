@@ -9,10 +9,6 @@ async function Home() {
   const data: Promise<IProduct[]> = getAllProducts();
   const products = await data;
 
-  // const handleDelete = async (id: number) => {
-  //   await deleteProduct(id);
-  // };
-
   console.log(products);
 
   return (

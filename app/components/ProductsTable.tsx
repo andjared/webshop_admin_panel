@@ -1,11 +1,17 @@
+"use client";
 import Link from "next/link";
 import { IProduct } from "@/types";
 import React from "react";
+import deleteProduct from "@/lib/deleteProducts";
 
 export interface Props {
   products: IProduct[];
-  // handleDelete: (id: number) => void;
 }
+
+const handleDelete = async (id: number) => {
+  await deleteProduct(id);
+};
+
 export default function Products({ products }: Props): JSX.Element {
   return (
     <table className="table-auto py-8 text-sm">
@@ -42,7 +48,10 @@ export default function Products({ products }: Props): JSX.Element {
                   </Link>
                 </td>
                 <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                  <button className="bg-warning text-white font-medium py-2 px-6">
+                  <button
+                    className="bg-warning text-white font-medium py-2 px-6"
+                    onClick={() => handleDelete(id!)}
+                  >
                     Delete
                   </button>
                 </td>
