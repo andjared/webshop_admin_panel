@@ -1,6 +1,5 @@
 export default async function getAllProducts() {
   const res = await fetch("http://localhost:3000/api/products", {
-    mode: "no-cors",
     method: "GET",
     headers: {
       Accept: "application/json",
