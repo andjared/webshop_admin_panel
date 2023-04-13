@@ -1,6 +1,6 @@
 "use client";
 import { IProduct } from "@/types";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import editProduct from "@/lib/editProduct";
@@ -13,6 +13,8 @@ export interface Props {
 
 export default function ProductsForm({ product }: Props) {
   const router = useRouter();
+
+  const [uploadedImg, setUploadedImg] = useState<string>("");
   const formData = {
     title: "",
     info: "",
@@ -20,7 +22,6 @@ export default function ProductsForm({ product }: Props) {
     img: "",
     price: "",
   };
-
   const [data, setData] = useState<IProduct>(product || formData);
 
   const { title, info, description, img, price } = data;
@@ -38,13 +39,22 @@ export default function ProductsForm({ product }: Props) {
   };
 
   const handleSubmit = (e: any, data: IProduct) => {
+    data.img = uploadedImg ? uploadedImg : img;
     product ? handleEdit(e, data) : handleCreate(e, data);
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploaded = `/images/${e.target.files![0].name}`;
+    setUploadedImg(uploaded);
   };
 
   return (
@@ -107,15 +117,17 @@ export default function ProductsForm({ product }: Props) {
             Select image
           </a>
         </label>
-        {/* <div className="relative h-96 w-full object-cover">
-          <Image src={img} alt={title} fill />
-        </div> */}
+        {img && (
+          <div className="relative h-96 w-full object-cover">
+            <Image src={img} alt={title} fill />
+          </div>
+        )}
         <input
           id="fileUpload"
           name="img"
           type="file"
           className="hidden"
-          onChange={handleChange}
+          onChange={handleImgChange}
         />
       </div>
       <div className="flex gap-2 border-t-2 border-l-rose-50 py-4">
