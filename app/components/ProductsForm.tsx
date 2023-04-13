@@ -13,15 +13,16 @@ export interface Props {
 
 export default function ProductsForm({ product }: Props) {
   const router = useRouter();
-
   const [uploadedImg, setUploadedImg] = useState<string>("");
   const formData = {
     title: "",
     info: "",
     description: "",
-    img: "",
+    img: uploadedImg,
     price: "",
   };
+
+  //on edit page set form data to product props
   const [data, setData] = useState<IProduct>(product || formData);
 
   const { title, info, description, img, price } = data;
@@ -117,9 +118,10 @@ export default function ProductsForm({ product }: Props) {
             Select image
           </a>
         </label>
-        {img && (
+        {/* display image only if one of two is true */}
+        {(uploadedImg || img) && (
           <div className="relative h-96 w-full object-cover">
-            <Image src={img} alt={title} fill />
+            <Image src={uploadedImg ? uploadedImg : img} alt={title} fill />
           </div>
         )}
         <input

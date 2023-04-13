@@ -7,8 +7,6 @@ async function Home() {
   const data: Promise<IProduct[]> = getAllProducts();
   const products = await data;
 
-  console.log(products);
-
   return (
     <main className="flex flex-col justify-center align-center text-primary max-w-4xl mx-auto px-2 mb-10">
       <header className="flex justify-between align-center my-5">
