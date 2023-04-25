@@ -14,6 +14,7 @@ export interface Props {
 export default function ProductsForm({ product }: Props) {
   const router = useRouter();
   const [uploadedImg, setUploadedImg] = useState<string>("");
+
   const formData = {
     title: "",
     info: "",
