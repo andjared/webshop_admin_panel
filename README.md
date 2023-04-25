@@ -1,3 +1,18 @@
+<div>
+<h2>Webshop Admin Panel </h2>
+<p>CRUD app representing admin panel for Jewelry Webshop https://andjared.github.io/typescript_react_webshop/. </p>
+<p>Currently running only when api https://github.com/pekac/jewerly-dummy-api is running on localhost. </p>
+
+---
+<div>
+    <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" width="40"       height="40"/>&nbsp;
+        <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg" alt="next.js" width="40" height="40" />&nbsp;
+    <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original-wordmark.svg" alt="css3" width="40" height="40" />&nbsp;
+   </div>
+</div>
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
