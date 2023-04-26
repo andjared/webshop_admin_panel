@@ -1,11 +1,10 @@
 "use client";
-import { IProduct } from "@/types";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import editProduct from "@/lib/editProduct";
-import createProduct from "@/lib/createProduct";
-import { useRouter } from "next/navigation";
+import { IProduct } from "@/types/types";
+import { ProductService } from "@/services/ProductService";
 
 export interface Props {
   product?: IProduct;
@@ -22,7 +21,6 @@ export default function ProductsForm({ product }: Props) {
     img: uploadedImg,
     price: "",
   };
-
   //on edit page set form data to product props
   const [data, setData] = useState<IProduct>(product || formData);
 
@@ -30,13 +28,13 @@ export default function ProductsForm({ product }: Props) {
 
   const handleEdit = async (e: any, data: IProduct) => {
     e.preventDefault();
-    await editProduct(data, data.id!);
+    await ProductService.editProduct(data, data.id!);
     router.push("/");
   };
 
   const handleCreate = async (e: any, data: IProduct) => {
     e.preventDefault();
-    await createProduct(data);
+    await ProductService.createProduct(data);
     router.push("/");
   };
 

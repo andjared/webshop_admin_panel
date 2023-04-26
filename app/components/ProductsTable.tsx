@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import { IProduct } from "@/types";
 import { useTransition } from "react";
-import deleteProduct from "@/lib/deleteProducts";
 import { useRouter } from "next/navigation";
+import { IProduct } from "@/types/types";
+import { ProductService } from "@/services/ProductService";
 
 export interface Props {
   products: IProduct[];
@@ -14,7 +14,7 @@ export default function Products({ products }: Props): JSX.Element {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = async (id: number) => {
-    await deleteProduct(id);
+    await ProductService.deleteProduct(id);
     startTransition(() => {
       // Refresh the current route and fetch new data from the server without
       // losing client-side browser or React state.
