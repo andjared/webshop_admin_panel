@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import TextInput from "./TextInput";
 import { IProduct } from "@/types/types";
 import { ProductService } from "@/services/ProductService";
 
@@ -46,6 +47,7 @@ export default function ProductsForm({ product }: Props) {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
+    console.log(e.target.value);
     setData({
       ...data,
       [e.target.name]: e.target.value,
@@ -59,32 +61,8 @@ export default function ProductsForm({ product }: Props) {
 
   return (
     <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2 text-base">
-      <label className="block">
-        <span className="block text-md font-medium text-slate-700 py-1">
-          Title
-        </span>
-        <input
-          placeholder={title}
-          type="text"
-          name="title"
-          className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
-          onChange={handleChange}
-        />
-      </label>
-      <label className="block">
-        <span className="block text-md font-medium text-slate-700 py-1">
-          Info
-        </span>
-        <input
-          placeholder={info}
-          type="text"
-          name="info"
-          className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
-          onChange={handleChange}
-        />
-      </label>
+      <TextInput value={title} name="title" handleChange={handleChange} />
+      <TextInput value={info} name="info" handleChange={handleChange} />
       <label className="block">
         <span className="block text-md font-medium text-slate-700 py-1">
           Description
@@ -93,24 +71,11 @@ export default function ProductsForm({ product }: Props) {
           placeholder={description}
           name="description"
           rows={3}
-          className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+          className="form-text"
           onChange={handleChange}
         />
       </label>
-      <label className="block">
-        <span className="block text-md font-medium text-slate-700 py-1">
-          Price
-        </span>
-        <input
-          placeholder={price}
-          type="text"
-          name="price"
-          className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
-          onChange={handleChange}
-        />
-      </label>
+      <TextInput value={price} name="price" handleChange={handleChange} />
       <div className="flex flex-col justify-between gap-3">
         <label htmlFor="fileUpload" className="pointer-events-none">
           <a className="bg-accent px-3 py-2 text-md text-white font-medium cursor-pointer pointer-events-auto">

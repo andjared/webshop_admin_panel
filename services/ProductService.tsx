@@ -9,7 +9,6 @@ export const ProductService = {
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-console.log("url", baseUrl);
 
 async function createProduct(data: IProduct) {
   await fetch(baseUrl, {
