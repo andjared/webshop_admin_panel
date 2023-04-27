@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Props {
+export interface Props {
   value: string;
   name: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

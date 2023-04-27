@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { IProduct } from "@/types/types";
 
-interface Props {
+export interface Props {
   product: IProduct;
   handleDelete: (id: number) => void;
 }
