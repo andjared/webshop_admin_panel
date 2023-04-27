@@ -9,7 +9,7 @@ import { ProductService } from "@/services/ProductService";
 
 export interface Props {
   product?: IProduct;
-  formType: "edit" | "create";
+  formType: "create" | "edit";
 }
 
 export default function ProductsForm({ product, formType }: Props) {
@@ -24,7 +24,7 @@ export default function ProductsForm({ product, formType }: Props) {
   };
 
   //on edit page set form data to product props
-  const [data, setData] = useState(formType === "edit" ? product! : formData);
+  const [data, setData] = useState(product! || formData);
 
   const { title, info, description, img, price } = data;
 
@@ -43,7 +43,7 @@ export default function ProductsForm({ product, formType }: Props) {
   };
 
   const handleEdit = async (data: IProduct) => {
-    await ProductService.editProduct(data, data.id!);
+    await ProductService.editProduct(data, data.id);
     router.push("/");
   };
 

@@ -10,7 +10,7 @@ export const ProductService = {
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-async function createProduct(data: IProduct) {
+async function createProduct(data: Omit<IProduct, "id">) {
   await fetch(baseUrl, {
     method: "POST",
     headers: {
