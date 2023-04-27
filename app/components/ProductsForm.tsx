@@ -9,21 +9,22 @@ import { ProductService } from "@/services/ProductService";
 
 export interface Props {
   product?: IProduct;
+  formType: "edit" | "create";
 }
 
-export default function ProductsForm({ product }: Props) {
+export default function ProductsForm({ product, formType }: Props) {
   const router = useRouter();
-  const [uploadedImg, setUploadedImg] = useState<string>("");
 
-  const formData = {
+  const formData: Omit<IProduct, "id"> = {
     title: "",
     info: "",
     description: "",
-    img: uploadedImg,
+    img: "",
     price: "",
   };
+
   //on edit page set form data to product props
-  const [data, setData] = useState<IProduct>(product || formData);
+  const [data, setData] = useState(formType === "edit" ? product! : formData);
 
   const { title, info, description, img, price } = data;
 
@@ -39,15 +40,13 @@ export default function ProductsForm({ product }: Props) {
     router.push("/");
   };
 
-  const handleSubmit = (e: any, data: IProduct) => {
-    data.img = uploadedImg ? uploadedImg : img;
-    product ? handleEdit(e, data) : handleCreate(e, data);
+  const handleSubmit = (e: any, data: IProduct | Omit<IProduct, "id">) => {
+    formType === "edit" ? handleEdit(e, data) : handleCreate(e, data);
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
-    console.log(e.target.value);
     setData({
       ...data,
       [e.target.name]: e.target.value,
@@ -56,7 +55,7 @@ export default function ProductsForm({ product }: Props) {
 
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploaded = `/images/${e.target.files![0].name}`;
-    setUploadedImg(uploaded);
+    setData({ ...data, img: uploaded });
   };
 
   return (
@@ -82,10 +81,9 @@ export default function ProductsForm({ product }: Props) {
             Select image
           </a>
         </label>
-        {/* display image only if one of two is true */}
-        {(uploadedImg || img) && (
+        {img && (
           <div className="relative h-96 w-full object-cover">
-            <Image src={uploadedImg ? uploadedImg : img} alt={title} fill />
+            <Image src={img} alt={title} fill />
           </div>
         )}
         <input

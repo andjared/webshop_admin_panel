@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 export const metadata = {
   title: "Webshop Admin",
-  description: "CRUD app",
+  description: "CRUD App",
 };
 
 export default function RootLayout({

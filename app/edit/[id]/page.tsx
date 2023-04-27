@@ -9,7 +9,7 @@ async function Edit({ params: { id } }: Props) {
   const data = ProductService.getProductById(Number(id));
   const product = await data;
 
-  return <ProductsForm product={product} />;
+  return <ProductsForm product={product} formType="edit" />;
 }
 
 export default Edit;
