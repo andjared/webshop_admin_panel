@@ -9,7 +9,7 @@ export interface Props {
   products: IProduct[];
 }
 
-export default function Products({ products }: Props): JSX.Element {
+export default function ProductsTable({ products = [] }: Props): JSX.Element {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
