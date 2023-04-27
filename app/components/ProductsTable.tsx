@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { IProduct } from "@/types/types";
 import { ProductService } from "@/services/ProductService";
+import ProductRow from "./ProductRow";
 
 export interface Props {
   products: IProduct[];
@@ -38,35 +38,15 @@ export default function Products({ products }: Props): JSX.Element {
         </tr>
       </thead>
       <tbody>
-        {products &&
-          products.map((product: IProduct) => {
-            const { id, title } = product!;
-            return (
-              <tr
-                key={id}
-                className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2 align-middle"
-              >
-                <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm  py-1 px-3 font-medium">
-                  {title}
-                </td>
-                <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                  <Link href={`/edit/${id}`} className="text-sm z-10">
-                    <button className="bg-positive text-white font-medium py-2 px-6 pointer-events-auto">
-                      Edit
-                    </button>
-                  </Link>
-                </td>
-                <td className="border-collapse border border-slate-300 rounded-md  border-spacing-2 shadow-sm p-2">
-                  <button
-                    className="bg-warning text-white font-medium py-2 px-6"
-                    onClick={() => handleDelete(id!)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+        {products.map((product: IProduct) => {
+          return (
+            <ProductRow
+              key={product.id}
+              product={product}
+              handleDelete={handleDelete}
+            />
+          );
+        })}
       </tbody>
     </table>
   );
