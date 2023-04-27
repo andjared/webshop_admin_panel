@@ -24,7 +24,7 @@ export default function ProductRow({
       <td className="table-data p-2">
         <button
           className="bg-warning text-white font-medium py-2 px-6"
-          onClick={() => handleDelete(id!)}
+          onClick={() => handleDelete(id)}
         >
           Delete
         </button>

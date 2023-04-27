@@ -69,7 +69,7 @@ export default function ProductsForm({ product, formType }: Props) {
           Description
         </span>
         <textarea
-          placeholder={description}
+          value={description}
           name="description"
           rows={3}
           className="form-text"
