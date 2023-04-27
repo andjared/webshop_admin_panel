@@ -37,7 +37,7 @@ export default function ProductsForm({ product, formType }: Props) {
     });
   };
 
-  const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const uploaded = `/images/${e.target.files![0].name}`;
     setData({ ...data, img: uploaded });
   };
@@ -52,13 +52,16 @@ export default function ProductsForm({ product, formType }: Props) {
     router.push("/");
   };
 
-  const handleSubmit = (e: React.MouseEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     formType === "edit" ? handleEdit(data) : handleCreate(data);
   };
 
   return (
-    <form className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2 text-base">
+    <form
+      className="max-w-3xl flex flex-col justify-center mx-auto my-8 gap-4 px-2 text-base"
+      onSubmit={handleSubmit}
+    >
       <TextInput value={title} name="title" handleChange={handleChange} />
       <TextInput value={info} name="info" handleChange={handleChange} />
       <label className="block">
@@ -98,7 +101,6 @@ export default function ProductsForm({ product, formType }: Props) {
         <button
           type="submit"
           className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2"
-          onClick={handleSubmit}
         >
           Save
         </button>
