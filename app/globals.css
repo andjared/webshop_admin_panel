@@ -4,13 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary: #5c5c5c;
-  --accent: #e7ab9a;
-  --positive: #617143;
-  --warning: #df7857;
-}
-
 * {
   box-sizing: border-box;
   padding: 0;

@@ -8,10 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: " var(--primary)",
-        accent: "var(--accent)",
-        positive: "var(--positive)",
-        warning: "var(--warning)",
+        primary: "#5c5c5c",
+        accent: "#e7ab9a",
+        positive: "#617143",
+        warning: "#df7857",
       },
       fontFamily: {
         title: ["Dancing Script, cursive"],
