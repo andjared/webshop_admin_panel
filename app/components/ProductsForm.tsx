@@ -28,22 +28,6 @@ export default function ProductsForm({ product, formType }: Props) {
 
   const { title, info, description, img, price } = data;
 
-  const handleEdit = async (e: any, data: IProduct) => {
-    e.preventDefault();
-    await ProductService.editProduct(data, data.id!);
-    router.push("/");
-  };
-
-  const handleCreate = async (e: any, data: IProduct) => {
-    e.preventDefault();
-    await ProductService.createProduct(data);
-    router.push("/");
-  };
-
-  const handleSubmit = (e: any, data: IProduct | Omit<IProduct, "id">) => {
-    formType === "edit" ? handleEdit(e, data) : handleCreate(e, data);
-  };
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
@@ -56,6 +40,21 @@ export default function ProductsForm({ product, formType }: Props) {
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploaded = `/images/${e.target.files![0].name}`;
     setData({ ...data, img: uploaded });
+  };
+
+  const handleEdit = async (data: IProduct) => {
+    await ProductService.editProduct(data, data.id!);
+    router.push("/");
+  };
+
+  const handleCreate = async (data: Omit<IProduct, "id">) => {
+    await ProductService.createProduct(data);
+    router.push("/");
+  };
+
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault();
+    formType === "edit" ? handleEdit(data) : handleCreate(data);
   };
 
   return (
@@ -81,6 +80,7 @@ export default function ProductsForm({ product, formType }: Props) {
             Select image
           </a>
         </label>
+
         {img && (
           <div className="relative h-96 w-full object-cover">
             <Image src={img} alt={title} fill />
@@ -98,7 +98,7 @@ export default function ProductsForm({ product, formType }: Props) {
         <button
           type="submit"
           className="bg-positive outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2"
-          onClick={(e) => handleSubmit(e, data)}
+          onClick={handleSubmit}
         >
           Save
         </button>
