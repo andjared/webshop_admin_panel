@@ -1,4 +1,5 @@
-import { IProduct } from "@/types/types";
+import { IProduct } from "@/types/interfaces";
+import { CreateProductType } from "@/types/types";
 
 export const ProductService = {
   createProduct,
@@ -10,7 +11,7 @@ export const ProductService = {
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-async function createProduct(data: Omit<IProduct, "id">) {
+async function createProduct(data: CreateProductType) {
   await fetch(baseUrl, {
     method: "POST",
     headers: {

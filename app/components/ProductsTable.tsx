@@ -1,9 +1,9 @@
 "use client";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
+import ProductRow from "./ProductRow";
 import { IProduct } from "@/types/interfaces";
 import { ProductService } from "@/services/ProductService";
-import ProductRow from "./ProductRow";
 
 export interface Props {
   products: IProduct[];

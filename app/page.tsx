@@ -4,7 +4,7 @@ import { IProduct } from "@/types/interfaces";
 import { ProductService } from "@/services/ProductService";
 
 async function Home() {
-  const products: Promise<IProduct[]> = await ProductService.getAllProducts();
+  const products: IProduct[] = await ProductService.getAllProducts();
 
   return (
     <main className="flex flex-col justify-center align-center text-primary max-w-4xl mx-auto px-2 mb-10">
