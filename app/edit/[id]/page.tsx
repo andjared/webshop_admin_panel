@@ -6,7 +6,7 @@ export interface Props {
 }
 
 async function Edit({ params: { id } }: Props) {
-  const product = await ProductService.getProductById(Number(id));
+  const product = await ProductService.getProductById(parseInt(id));
 
   return <ProductsForm product={product} formType="edit" />;
 }
