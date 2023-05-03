@@ -1,7 +1,7 @@
 "use client";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { IProduct } from "@/types/types";
+import { IProduct } from "@/types/interfaces";
 import { ProductService } from "@/services/ProductService";
 import ProductRow from "./ProductRow";
 
@@ -40,7 +40,6 @@ export default function ProductsTable({ products = [] }: Props): JSX.Element {
       <tbody>
         {products.map((product: IProduct) => {
           const { id, title } = product;
-
           return (
             <ProductRow
               key={id}

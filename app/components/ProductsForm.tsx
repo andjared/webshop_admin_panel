@@ -4,24 +4,24 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import TextInput from "./TextInput";
-import { IProduct } from "@/types/types";
+import { CreateProductType } from "@/types/types";
+import { IProduct } from "@/types/interfaces";
 import { ProductService } from "@/services/ProductService";
 
 export interface Props {
   product?: IProduct;
   formType: "create" | "edit";
 }
+const formData: CreateProductType = {
+  title: "",
+  info: "",
+  description: "",
+  img: "",
+  price: "",
+};
 
 export default function ProductsForm({ product, formType }: Props) {
   const router = useRouter();
-
-  const formData: Omit<IProduct, "id"> = {
-    title: "",
-    info: "",
-    description: "",
-    img: "",
-    price: "",
-  };
 
   //on edit page set form data to product props
   const [data, setData] = useState(product! || formData);
@@ -47,7 +47,7 @@ export default function ProductsForm({ product, formType }: Props) {
     router.push("/");
   };
 
-  const handleCreate = async (data: Omit<IProduct, "id">) => {
+  const handleCreate = async (data: CreateProductType) => {
     await ProductService.createProduct(data);
     router.push("/");
   };
@@ -105,9 +105,9 @@ export default function ProductsForm({ product, formType }: Props) {
           Save
         </button>
         <Link href="/">
-          <button className="bg-warning outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
+          <span className="inline-block bg-warning outline-slate-400 outline-offset-3 text-slate-100 font-medium px-4 py-2 ">
             Cancel
-          </button>
+          </span>
         </Link>
       </div>
     </form>

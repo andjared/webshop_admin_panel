@@ -1,8 +1,10 @@
-export interface IProduct {
-  id: number;
-  title: string;
-  info: string;
-  description: string;
-  price: string;
-  img: string;
-}
+// export interface IProduct {
+//   id: number;
+//   title: string;
+//   info: string;
+//   description: string;
+//   price: string;
+//   img: string;
+// }
+
+export type CreateProductType = Omit<IProduct, "id">
