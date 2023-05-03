@@ -11,9 +11,9 @@ async function Home() {
       <header className="flex justify-between align-center my-5">
         <h2 className="font-title font-extrabold text-lg">Products</h2>
         <Link href="/create" className="text-sm text-white font-medium">
-          <button className="bg-positive font-medium py-2 px-6">
+          <span className="inline-block bg-positive font-medium py-2 px-6">
             Create New Product
-          </button>
+          </span>
         </Link>
       </header>
       <ProductsTable products={products} />
