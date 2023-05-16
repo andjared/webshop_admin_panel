@@ -38,8 +38,7 @@ export default function ProductsTable({ products = [] }: Props): JSX.Element {
         </tr>
       </thead>
       <tbody>
-        {products.map((product: IProduct) => {
-          const { id, title } = product;
+        {products.map(({ id, title }) => {
           return (
             <ProductRow
               key={id}

@@ -26,6 +26,16 @@ export default function ProductsForm({ product, formType }: Props) {
   //on edit page set form data to product props
   const [data, setData] = useState(product! || formData);
 
+  const handleEdit = async (data: IProduct) => {
+    await ProductService.editProduct(data, data.id);
+    router.push("/");
+  };
+
+  const handleCreate = async (data: CreateProductType) => {
+    await ProductService.createProduct(data);
+    router.push("/");
+  };
+
   const { title, info, description, img, price } = data;
 
   const handleChange = (
@@ -40,16 +50,6 @@ export default function ProductsForm({ product, formType }: Props) {
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const uploaded = `/images/${e.target.files![0].name}`;
     setData({ ...data, img: uploaded });
-  };
-
-  const handleEdit = async (data: IProduct) => {
-    await ProductService.editProduct(data, data.id);
-    router.push("/");
-  };
-
-  const handleCreate = async (data: CreateProductType) => {
-    await ProductService.createProduct(data);
-    router.push("/");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
